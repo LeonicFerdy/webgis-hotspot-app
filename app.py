@@ -1,5 +1,3 @@
-# app.py - Versi Diperbaiki dengan Better Error Handling dan Compatibility
-
 import os
 import sys
 import traceback
@@ -347,10 +345,6 @@ def analyze_data():
                 "error": f"File tidak dapat dibaca: {str(validation_error)}",
                 "suggestion": "Pastikan file Excel/CSV tidak corrupt dan memiliki format yang benar"
             }), 400
-        if __name__ == '__main__':
-            # Production config
-            port = int(os.environ.get('PORT', 5000))
-            app.run(host='0.0.0.0', port=port, debug=False)
         # ========================================
         # JALANKAN ANALISIS
         # ========================================
@@ -637,5 +631,6 @@ if __name__ == '__main__':
     print("\n" + "=" * 60)
     print("🎯 Server ready for hotspot analysis!")
     
-    # Run Flask app
-    app.run(debug=True, host='127.0.0.1', port=5000, threaded=True)
+    # Production config for Render.com
+    port = int(os.environ.get('PORT', 5000))
+    app.run(host='0.0.0.0', port=port, debug=False, threaded=True)
